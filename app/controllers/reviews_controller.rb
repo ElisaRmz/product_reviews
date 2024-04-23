@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_review, only: %i[ destroy ]
 
   # GET /reviews/new
   def new
@@ -26,11 +27,15 @@ class ReviewsController < ApplicationController
     @review.destroy!
 
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: "Review was successfully destroyed." }
+      format.html { redirect_to product_url(product_id), notice: "Review was successfully destroyed." }
     end
   end
 
   private
+  def set_review
+    @review = Review.find(params[:id])
+  end
+
   def review_params
     params.require(:review).permit(:score, :comment)
   end
