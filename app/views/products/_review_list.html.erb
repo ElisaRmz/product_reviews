@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Score</th>
+      <th>Comment</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews&.each do |review| %>
+      <tr>
+        <td><%= review.score %></td>
+        <td><%= review.comment %></td>
+        <td>
+          <%= link_to 'Delete', product_review_path(@product, review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

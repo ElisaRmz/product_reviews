@@ -2,39 +2,24 @@
 
 <%= render @product %>
 
-<h3>Add a New Review</h3>
-<%= form_with model: [@product, @new_review] do |form| %>
-  <div class="field">
-    <%= form.label :score %>
-    <%= form.number_field :score, class: 'form-control' %>
-  </div>
+<%= turbo_frame_tag "reviews" do %>
+  <h3>Add a New Review</h3>
+  <%= form_with model: [@product, @new_review] do |form| %>
+    <div class="field">
+      <%= form.label :score %>
+      <%= form.number_field :score, class: 'form-control' %>
+    </div>
 
-  <div class="field">
-    <%= form.label :comment %>
-    <%= form.text_area :comment, class: 'form-control' %>
-  </div>
+    <div class="field">
+      <%= form.label :comment %>
+      <%= form.text_area :comment, class: 'form-control' %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit 'Add Review', class: 'btn btn-primary' %>
-  </div>
+    <div class="actions">
+      <%= form.submit 'Add Review', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+  <%= render partial: 'products/review_list', locals: { reviews: @product.reviews, product: @product } %>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Score</th>
-      <th>Comment</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @reviews&.each do |review| %>
-      <tr>
-        <td><%= review.score %></td>
-        <td><%= review.comment %></td>
-        <td>
-          <%= link_to 'Delete', product_review_path(@product, review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
