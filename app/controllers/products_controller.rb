@@ -1,13 +1,15 @@
 class ProductsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_product, only: %i[ show edit update destroy ]
 
-  # GET /products or /products.json
+  # GET /products
   def index
     @products = Product.all
   end
 
-  # GET /products/1 or /products/1.json
+  # GET /products/1
   def show
+    @product = Product.find(params[:id])
   end
 
   # GET /products/new
@@ -19,9 +21,10 @@ class ProductsController < ApplicationController
   def edit
   end
 
-  # POST /products or /products.json
+  # POST /products
   def create
     @product = Product.new(product_params)
+    @product.user = current_user
 
     respond_to do |format|
       if @product.save
@@ -32,7 +35,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /products/1 or /products/1.json
+  # PATCH/PUT /products/1
   def update
     respond_to do |format|
       if @product.update(product_params)
@@ -43,7 +46,7 @@ class ProductsController < ApplicationController
     end
   end
 
-  # DELETE /products/1 or /products/1.json
+  # DELETE /products/1
   def destroy
     @product.destroy!
 
