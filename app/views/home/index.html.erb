@@ -16,9 +16,10 @@
         <td><%= link_to product.url, product.url, target: '_blank' %></td>
         <td><%= product.description %></td>
         <td>
-          <%= link_to 'Show', product_path(product), class: 'btn btn-info btn-sm' %>
-          <%= link_to 'Edit', edit_product_path(product), class: 'btn btn-warning btn-sm' %>
           <%= link_to 'Delete', product_path(product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+          <%= button_to 'Show', product_path(product), method: :get, class: 'btn btn-info btn-sm' %>
+          <%= button_to 'Edit', edit_product_path(product), method: :get, class: 'btn btn-warning btn-sm' %>
+          <%= button_to 'Delete', product_path(product), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?'  }%>
         </td>
       </tr>
     <% end %>

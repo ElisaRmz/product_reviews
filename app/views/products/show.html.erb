@@ -2,9 +2,39 @@
 
 <%= render @product %>
 
-<div>
-  <%= link_to "Edit this product", edit_product_path(@product) %> |
-  <%= link_to "Back to products", products_path %>
+<h3>Add a New Review</h3>
+<%= form_with model: [@product, @new_review] do |form| %>
+  <div class="field">
+    <%= form.label :score %>
+    <%= form.number_field :score, class: 'form-control' %>
+  </div>
 
-  <%= button_to "Destroy this product", @product, method: :delete %>
-</div>
+  <div class="field">
+    <%= form.label :comment %>
+    <%= form.text_area :comment, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Add Review', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Score</th>
+      <th>Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @reviews&.each do |review| %>
+      <tr>
+        <td><%= review.score %></td>
+        <td><%= review.comment %></td>
+        <td>
+          <%= link_to 'Delete', product_review_path(@product.id, review.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
