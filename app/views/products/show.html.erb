@@ -32,7 +32,7 @@
         <td><%= review.score %></td>
         <td><%= review.comment %></td>
         <td>
-          <%= link_to 'Delete', product_review_path(@product.id, review.id), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
+          <%= link_to 'Delete', product_review_path(@product, review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }%>
         </td>
       </tr>
     <% end %>
