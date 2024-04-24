@@ -47,7 +47,9 @@ class ReviewsController < ApplicationController
 
   def check_owner
     unless @review.user == current_user
-      redirect_to products_path
+      respond_to do |format|
+        format.html { redirect_to product_url(product_id), notice: "Is not your review." }
+      end
     end
   end
 end
