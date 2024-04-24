@@ -1,6 +1,7 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
       <th>Score</th>
       <th>Comment</th>
       <th>Action</th>
@@ -9,6 +10,7 @@
   <tbody>
     <% @reviews&.each do |review| %>
       <tr>
+        <td><%= review.user.email %></td>
         <td><%= review.score %></td>
         <td><%= review.comment %></td>
         <td>
