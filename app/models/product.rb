@@ -3,5 +3,4 @@ class Product < ApplicationRecord
   belongs_to :user
 
   validates :url, format: { with: URI::regexp(%w[http https]), message: "must be a valid url" }
-
 end
