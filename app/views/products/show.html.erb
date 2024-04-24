@@ -2,8 +2,9 @@
 
 <%= render @product %>
 
-<%= turbo_frame_tag "reviews" do %>
+<h2>Average Score: <%= @average_score %></h2>
 
+<%= turbo_frame_tag "reviews" do %>
   <h3>Add a New Review</h3>
 
   <%= flash[:notice] %>

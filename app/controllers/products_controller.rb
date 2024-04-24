@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @reviews = @product.reviews
     @new_review = Review.new
+    @average_score = @reviews.average(:score).to_f.round(2)
   end
 
   # GET /products/new
