@@ -17,7 +17,7 @@ class ReviewsController < ApplicationController
       if @review.save
         format.html { redirect_to product_url(@review.product_id), notice: "Review was successfully created." }
       else
-        format.html { render :new, status: :unprocessable_entity }
+        format.html { redirect_to product_url(@review.product_id), notice: "Error." }
       end
     end
   end

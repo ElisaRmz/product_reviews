@@ -3,7 +3,11 @@
 <%= render @product %>
 
 <%= turbo_frame_tag "reviews" do %>
+
   <h3>Add a New Review</h3>
+
+  <%= flash[:notice] %>
+
   <%= form_with model: [@product, @new_review] do |form| %>
     <div class="field">
       <%= form.label :score %>
