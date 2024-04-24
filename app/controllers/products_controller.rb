@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_product, only: %i[ show edit update destroy ]
+  before_action :check_owner, only: [:edit, :update, :destroy]
 
   add_breadcrumb "home", :root_path
 
@@ -69,5 +70,11 @@ class ProductsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def product_params
       params.require(:product).permit(:name, :url, :description)
+    end
+
+    def check_owner
+      unless @product.user == current_user
+        redirect_to root_path
+      end
     end
 end

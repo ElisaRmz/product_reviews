@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_review, only: %i[ destroy ]
+  before_action :check_owner, only: [:destroy]
 
   # GET /reviews/new
   def new
@@ -42,5 +43,11 @@ class ReviewsController < ApplicationController
 
   def product_id
     params[:product_id]
+  end
+
+  def check_owner
+    unless @review.user == current_user
+      redirect_to products_path
+    end
   end
 end
