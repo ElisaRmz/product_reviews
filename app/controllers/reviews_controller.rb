@@ -3,11 +3,6 @@ class ReviewsController < ApplicationController
   before_action :set_review, only: %i[ destroy ]
   before_action :check_owner, only: [:destroy]
 
-  # GET /reviews/new
-  def new
-    @review = Review.new
-  end
-
   # POST /reviews
   def create
     @review = Review.new(review_params)
