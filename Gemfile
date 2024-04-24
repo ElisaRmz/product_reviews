@@ -65,3 +65,5 @@ end
 gem "devise", "~> 4.9"
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem "breadcrumbs_on_rails", "~> 4.1"

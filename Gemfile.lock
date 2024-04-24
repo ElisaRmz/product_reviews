@@ -81,6 +81,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.3)
       msgpack (~> 1.2)
+    breadcrumbs_on_rails (4.1.0)
+      railties (>= 5.0)
     builder (3.2.4)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
@@ -265,6 +267,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  breadcrumbs_on_rails (~> 4.1)
   debug
   devise (~> 4.9)
   dockerfile-rails (>= 1.6)
